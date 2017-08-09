@@ -1,0 +1,40 @@
+﻿@model CalendarWorkSchedule.Models.Event
+
+@{
+    ViewBag.Title = "Събитие";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Събитие</h2>
+
+<div class="container">
+    <div class="text-center">
+        <h2>@Model.Subject</h2>
+        <p>@Model.Description</p>
+    </div>
+
+    <h3>Коментари за събитието</h3>
+
+    @foreach (var comment in Model.Comments)
+    {
+        <div class="text-info">
+            <h4>Автор: @comment.Autor <small>| @comment.Created | </small></h4>
+            <p>@comment.Content</p>
+            <hr />
+        </div>
+    }
+
+    @using (Html.BeginForm())
+    {
+        <form class="form-horizontal" role="form">
+            <div class="text-right form-group">
+                <div class="">
+                    <h4>Въведи коментар</h4>
+                    <h4>Автор: @Html.TextBox("NewComment.Autor")</h4>
+                    <h4>Коментар: @Html.TextArea("NewComment.Content")</h4>
+                    <p><input type="submit" value="Запис" /></p>
+                </div>
+            </div>
+        </form>
+    }
+
+</div>
